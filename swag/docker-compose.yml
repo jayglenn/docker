@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=Americas/New_York
+      - URL=$DOMAINNAME
+      - SUBDOMAINS=cloud,status,plex,adguard,auth
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
+      - ONLY_SUBDOMAINS=true
+      - MAXMINDDB_LICENSE_KEY=$MAXMINDDB
+      - DOCKER_MODS=linuxserver/mods:swag-cloudflare-real-ip|linuxserver/mods:swag-auto-reload
+      - PROPAGATION=30
+
+    networks:
+      - proxy
+      - admin
+      - auth
+
+    volumes:
+      - $DOCKERDIR/swag/config:/config
+    ports:
+      - 443:443
+      - 80:80 #optional
+    restart: unless-stopped
