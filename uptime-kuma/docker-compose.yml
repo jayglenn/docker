@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+
+    networks:
+      - admin
+    depends_on:
+      - swag
+    volumes:
+      - $DOCKERDIR/uptime-kuma/data:/app/data
+    
+    restart: unless-stopped
+
