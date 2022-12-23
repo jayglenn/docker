@@ -1,0 +1,14 @@
+ersion: "3.9"
+
+services:
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    volumes:
+      - /run/user/$PGID/docker.sock:/var/run/docker.sock
+      - $DOCKERDIR/watchtower/config.json:/config.json
+
+    command: --interval 60
+
+    networks:
+      - admin
