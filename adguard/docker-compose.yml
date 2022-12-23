@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguard
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+    volumes:
+      - $DOCKERDIR/adguard/conf:/opt/adguardhome/conf
+      - $DOCKERDIR/adguard/work:/opt/adguardhome/work
+    networks:
+      - proxy
+    depends_on:
+      - swag
+
+    restart: unless-stopped
