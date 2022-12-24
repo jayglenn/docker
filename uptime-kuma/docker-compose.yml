@@ -5,10 +5,6 @@ services:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
 
-    networks:
-      - admin
-    depends_on:
-      - swag
     volumes:
       - $DOCKERDIR/uptime-kuma/data:/app/data
     
