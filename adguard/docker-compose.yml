@@ -9,9 +9,10 @@ services:
     volumes:
       - $DOCKERDIR/adguard/conf:/opt/adguardhome/conf
       - $DOCKERDIR/adguard/work:/opt/adguardhome/work
-    networks:
-      - proxy
-    depends_on:
-      - swag
-
+    #networks:
+    #  - proxy
+    #depends_on:
+    #  - swag
+    env_file:
+      - .env
     restart: unless-stopped
