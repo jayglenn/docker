@@ -7,8 +7,8 @@ services:
     environment:
       ENABLE_IPV6: false
     ports:
-      - "80:80"
-      - "443:443"
+      - "8011:80"
+      - "4431:443"
     volumes:
       - ./conf:/etc/nginx/conf.d
       - ./vhost:/etc/nginx/vhost.d
