@@ -13,6 +13,4 @@ services:
     #  - proxy
     #depends_on:
     #  - swag
-    env_file:
-      - $DOCKERDIR/.env
     restart: unless-stopped
