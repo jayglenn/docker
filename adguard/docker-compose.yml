@@ -13,4 +13,7 @@ services:
     #  - proxy
     #depends_on:
     #  - swag
+    ports:
+      - 9443:443
+      - 9808:80
     restart: unless-stopped
