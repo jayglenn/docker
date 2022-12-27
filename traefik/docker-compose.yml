@@ -20,3 +20,11 @@ services:
     volumes:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
       - "$DOCKERDIR/letsencrypt:/letsencrypt"
+
+  whoami:
+    image: "traefik/whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host('internet-site.com')"
+      - "traefik.http.routers.whoami.entrypoints=web,websecure" # changed
+      - "traefik.http.routers.whoami.tls.certresolver=myresolver" # new
