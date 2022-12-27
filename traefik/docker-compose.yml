@@ -9,7 +9,14 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443" 
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true" 
+      - "--certificatesresolvers.myresolver.acme.email=your@email.com" 
+      - "--certificatesresolvers.myresolver.acme.storage=$DOCKERDIR/letsencrypt/acme.json" 
+      
     ports:
-      - "80:8080"
+      - "80:80"
+      - "443:443"
     volumes:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
+      - "$DOCKERDIR/letsencrypt:/letsencrypt"
