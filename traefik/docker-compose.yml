@@ -2,17 +2,32 @@ version: "3.9"
 
 services:
   traefik:
-    image: "traefik:v2.6"
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443" 
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true" 
-      - "--certificatesresolvers.myresolver.acme.email=your@email.com" 
-      - "--certificatesresolvers.myresolver.acme.storage=$DOCKERDIR/letsencrypt/acme.json" 
+    image: traefik:latest       
+    command:      
+      - --api=true      
+      - --global.checkNewVersion=true               
+      - --log.level=DEBUG                          
+      - --log.filePath=/logs/traefik.log            
+      - --accessLog.filePath=/logs/access.log       
+      - --accessLog.bufferingSize=100               
+                                 
+      - --providers.docker=true                     
+      - --providers.docker.exposedbydefault=false   
+      - --providers.docker.endpoint=unix:///var/run/docker.sock 
+
+      - --entryPoints.console.address=:8080        
+      - --entryPoints.web.address=:80              
+      - --entrypoints.websecure.address=:443        
+                  
+      - --entryPoints.web.http.redirections.entryPoint.to=websecure     
+      - --entryPoints.web.http.redirections.entryPoint.scheme=https     
+      - --entryPoints.web.http.redirections.entrypoint.permanent=true   
+                                      
+      - --certificatesResolvers.letsencrypt.acme.email=your.email@gmail.com     
+      - --certificatesResolvers.letsencrypt.acme.storage=acme/acme.json        
+      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory     
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true 
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.provider=cloudflare 
       
     ports:
       - "80:80"
@@ -21,10 +36,5 @@ services:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
       - "$DOCKERDIR/letsencrypt:/letsencrypt"
 
-  whoami:
-    image: "traefik/whoami"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host('internet-site.com')"
-      - "traefik.http.routers.whoami.entrypoints=web,websecure" # changed
-      - "traefik.http.routers.whoami.tls.certresolver=myresolver" # new
+    restart: always
+    
