@@ -49,3 +49,7 @@ services:
       
     restart: unless-stopped
     
+    networks:
+      - admin
+
+    
