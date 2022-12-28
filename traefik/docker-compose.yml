@@ -55,7 +55,7 @@ services:
       - 'traefik.http.routers.plex.tls.certResolver=default'
       - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
       - 'traefik.http.services.plex.loadbalancer.server.port=32400' 
-      - 'traefik.http.services.plex.loadbalancer.server.url=https://10.0.60.100'
+      - 'traefik.http.services.plex.loadbalancer.server.url=https://10.0.60.100/web'
       
     restart: unless-stopped
     
