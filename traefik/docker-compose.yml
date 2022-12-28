@@ -23,7 +23,7 @@ services:
       - --entryPoints.web.http.redirections.entryPoint.scheme=https     
       - --entryPoints.web.http.redirections.entrypoint.permanent=true   
                                       
-      - --certificatesResolvers.letsencrypt.acme.email=your.email@gmail.com     
+      - --certificatesResolvers.letsencrypt.acme.email=jay.glenn@gmail.com
       - --certificatesResolvers.letsencrypt.acme.storage=acme/acme.json        
       - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory     
       - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true 
