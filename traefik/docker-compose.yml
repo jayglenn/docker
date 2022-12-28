@@ -50,7 +50,7 @@ services:
       - 'traefik.http.routers.plex.rule=Host(`plex.$DOMAINNAME`)'
       - 'traefik.http.routers.plex.entrypoints=web'
       - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.plex.loadBalancer.server.url=`http://10.0.60.100:32400/web`'
+      - 'traefik.http.services.plex.loadBalancer.server.url=http://10.0.60.100:32400/web'
 
       
     restart: unless-stopped
