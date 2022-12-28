@@ -49,6 +49,7 @@ services:
      # Plex
       - 'traefik.http.routers.plex.rule=Host(`plex.$DOMAINNAME`)'
       - 'traefik.http.routers.plex.entrypoints=web'
+      - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
       - 'traefik.http.routers.plex.loadbalancer.servers.url=http://10.0.60.100:32400/web'
       
       
