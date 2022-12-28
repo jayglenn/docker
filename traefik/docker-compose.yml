@@ -51,7 +51,6 @@ services:
       - 'traefik.http.routers.plex.rule=Host(`plex.$DOMAINNAME`)'
       - 'traefik.http.routers.plex.entrypoints=websecure'
       - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
-      - 'traefik.http.routers.plex.service=api@internal'
       - 'traefik.http.services.plex.loadBalancer.server.url=https://google.com'
 
       
