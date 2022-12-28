@@ -27,6 +27,7 @@ services:
       - --entrypoints.websecure.http.tls.domains[0].sans=*.$DOMAINNAME
       - --accesslog=true
       - --accesslog.filePath=/logs/access.log
+      - --log.filePath=/logs/traefik.log
       
     ports:
       - "80:80"
