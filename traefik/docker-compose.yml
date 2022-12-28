@@ -25,6 +25,8 @@ services:
       - --entrypoints.websecure.http.tls.certResolver=letsencrypt
       - --entrypoints.websecure.http.tls.domains[0].main=$DOMAINNAME
       - --entrypoints.websecure.http.tls.domains[0].sans=*.$DOMAINNAME
+      - --accesslog=true
+      - --accesslog.filePath=/logs/access.log
       
     ports:
       - "80:80"
