@@ -31,7 +31,7 @@ services:
       
     volumes:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
-      - certs:/letsencrypt
+      - $DOCKERDIR/letsencrypt:/letsencrypt
       
     environment:
       - CLOUDFLARE_EMAIL=$CF_API_EMAIL
