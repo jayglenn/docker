@@ -49,12 +49,13 @@ services:
       - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
        # Plex
       - 'traefik.http.routers.plex.rule=Host(`plex.$DOMAINNAME`)'
-      - 'traefik.http.routers.plex.entrypoints=websecure'
+      - 'traefik.http.routers.plex.entrypoints=https'
+      - 'traefik.http.routers.plex.middlewares=default-https'
       - 'traefik.http.routers.plex.service=websecure-forward'
+      - 'traefik.http.routers.plex.tls.certResolver=default'
       - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.plex.loadBalancer.server.port=32400' 
-      - 'traefik.http.services.plex.loadBalancer.server.url=http://10.0.60.100'
-
+      - 'traefik.http.services.plex.loadbalancer.server.port=32400' 
+      - 'traefik.http.services.plex.loadbalancer.server.url=http://10.0.60.100'
       
     restart: unless-stopped
     
