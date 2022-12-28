@@ -5,7 +5,7 @@ services:
     image: traefik:latest    
     container_name: traefik
     command:      
-      --log.level=DEBUG
+      - --log.level=DEBUG
       # Tell Traefik to discover containers using the Docker API
       - --providers.docker=true
       # Enable the Trafik dashboard
