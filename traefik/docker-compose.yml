@@ -46,11 +46,7 @@ services:
       - "traefik.http.routers.traefik.service=api@internal"
       - 'traefik.http.routers.traefik.middlewares=strip'
       - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
-     # Plex
-      - 'traefik.http.routers.plex.rule=Host(`plex.$DOMAINNAME`)'
-      - 'traefik.http.routers.plex.entrypoints=web'
-      - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
-      - 'traefik.http.routers.plex.loadbalancer.servers.url=http://10.0.60.100:32400/web'
+
       
       
     restart: unless-stopped
