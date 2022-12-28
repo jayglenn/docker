@@ -48,7 +48,6 @@ services:
       - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
 
       
-      
     restart: unless-stopped
     
     networks:
