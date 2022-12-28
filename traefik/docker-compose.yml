@@ -52,7 +52,8 @@ services:
       - 'traefik.http.routers.plex.entrypoints=websecure'
       - 'traefik.http.routers.plex.service=websecure-forward'
       - 'traefik.http.routers.plex.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.plex.loadBalancer.server.url=https://google.com'
+      - 'traefik.http.services.plex.loadBalancer.server.port=32400' 
+      - 'traefik.http.services.plex.loadBalancer.server.url=http://10.0.60.100'
 
       
     restart: unless-stopped
