@@ -39,11 +39,11 @@ services:
       - CLOUDFLARE_DNS_API_TOKEN=$CF_API_TOKEN
   
     labels:
-      - "traefik.enable=true"
+      - 'traefik.enable=true'
       - 'traefik.http.routers.traefik.rule=Host(`$DOMAINNAME`)'
       - 'traefik.http.routers.traefik.entrypoints=websecure'
       - 'traefik.http.routers.traefik.tls.certresolver=letsencrypt'
-      - "traefik.http.routers.traefik.service=api@internal'
+      - 'traefik.http.routers.traefik.service=api@internal'
       - 'traefik.http.routers.traefik.middlewares=strip'
       - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
        # Plex
