@@ -37,7 +37,7 @@ services:
     volumes:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
       - $DOCKERDIR/letsencrypt:/letsencrypt
-      - ./logs/:/logs/
+      - $DOCKERDIR/traefik/logs/:/logs/
       
     environment:
       - CLOUDFLARE_EMAIL=$CF_API_EMAIL
