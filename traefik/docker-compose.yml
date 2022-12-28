@@ -36,5 +36,8 @@ services:
       - "/run/user/$PGID/docker.sock:/var/run/docker.sock:ro"
       - "$DOCKERDIR/letsencrypt:/letsencrypt"
 
+    environment:
+      - CF_API_EMAIL=jay.glenn@gmail.com       
+      - CF_API_KEY=Fac9Q0rh0z6Gtn2hWuUmEVLR-v81LRS7q7D5fgs2
     restart: always
     
